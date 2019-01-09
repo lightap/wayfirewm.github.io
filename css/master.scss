@@ -1,0 +1,51 @@
+---
+---
+
+@import "bootstrap/scss/bootstrap";
+
+html {
+  height: 100%;
+}
+
+body {
+  $to: lighten(#ff9100, 35);
+  $from: lighten(#353535, 40);
+  background: linear-gradient(to bottom right, $from, $to);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  height: 100%;
+}
+
+.navbar-light {
+  margin-bottom: 1rem;
+
+  .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: underline;
+  }
+}
+
+.main a {
+  color: darken(#014c8c, 10);
+  text-decoration: underline;
+}
+
+iframe {
+  width: 100%;
+  box-shadow: 0 0 3px 3px #444;
+}
+
+.text-center {
+  text-align: center;
+}
+
+hr {
+  border-color: white;
+}
+
+#logo {
+  display: block;
+  margin: 0 auto;
+}
