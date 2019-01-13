@@ -1,0 +1,26 @@
+image: debian/stretch
+packages:
+  - rsync
+  - ruby
+  - ruby-dev
+  - zlib1g-dev
+sources:
+  - https://github.com/WayfireWM/wayfire.org
+environment:
+  deploy: deploy@wayfire.org
+secrets:
+  - 160a72cf-34d6-47b7-928b-c13b42b4d4f6
+triggers:
+  - action: email
+    condition: always
+    to: Ilia Bozhinov <ammen99@gmail.com>
+tasks:
+  - setup: |
+      sudo gem install github-pages
+  - build: |
+      cd wayfire.org
+      jekyll build
+  - deploy: |
+      cd wayfire.org
+      sshopts="-o StrictHostKeyChecking=no"
+      rsync --rsh="ssh $sshopts" -rP _site/ ${deploy}:/var/www/wayfire.org/
