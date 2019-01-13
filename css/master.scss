@@ -8,8 +8,8 @@ html {
 }
 
 body {
-  $to: lighten(#ff9100, 35);
-  $from: lighten(#353535, 40);
+  $to: #eee;
+  $from: #ddd;
   background: linear-gradient(to bottom right, $from, $to);
   background-size: cover;
   background-repeat: no-repeat;
