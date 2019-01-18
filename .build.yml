@@ -9,7 +9,7 @@ sources:
 environment:
   deploy: deploy@wayfire.org
 secrets:
-  - 302ef3e2-48f3-4eba-b391-b733af854947
+  - c1bc34f9-ab95-4355-b061-b3f14fa1693b
 triggers:
   - action: email
     condition: always
