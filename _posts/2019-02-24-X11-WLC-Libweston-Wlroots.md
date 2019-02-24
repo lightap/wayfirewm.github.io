@@ -1,6 +1,6 @@
 ---
 layout: post
-title: X11 -> WLC -> libweston -> wlroots: how the current Wayfire came to be
+title: "X11 -> WLC -> libweston -> wlroots: how the current Wayfire came to be"
 ---
 
 Wayfire is a project which has had 4 versions and has been rewritten 3 times. In this blog post I'll try to outline why those rewrites were necessary.
