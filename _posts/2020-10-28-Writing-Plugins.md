@@ -121,8 +121,7 @@ Wayfire utilizes OpenGL ES for rendering, so for the actual rendering we will be
 
 The vertex shader is pretty straightforward:
 
-```cpp
-const std::string vertex_source = R"(
+```glsl
 #version 100
 attribute mediump vec2 position;
 varying mediump vec2 fposition;
@@ -132,13 +131,12 @@ uniform mat4 matrix;
 void main() {
     gl_Position = matrix * vec4(position, 0.0, 1.0);
     fposition = position;
-})";
+}
 ```
 
 We have our input position and a transformation matrix, and we pass the input position to the fragment shader. Now the fragment shader:
 
-```cpp
-const std::string frag_source = R"(
+```glsl
 #version 100
 @builtin_ext@
 
@@ -174,7 +172,7 @@ void main()
     highp vec2 uv = (fposition - full_top_left) / (full_bottom_right - full_top_left);
     uv.y = 1.0 - uv.y;
     gl_FragColor = get_pixel(uv);
-})";
+}
 ```
 
 `top_left` and `bottom_right` uniforms are used to represent the window region that we are actually drawing. `full_top_left` and `full_top_right` uniforms represent the full window including shadows. If the current fragment is close enough to a corner, then we can check whether to discard the fragment or not. Otherwise, the color of the fragment is simply the color of the corresponding pixel in the window texture (which includes the shadows, which is why we need `full_top_left` and `full_bottom_right`).
@@ -184,8 +182,14 @@ There are also two special symbols, `@builtin@` and `@builtin_ext@`. The reason 
 Next, we need to compile our shaders in the constructor. Wayfire provides a convenient abstraction over OpenGL programs:
 
 ```cpp
+// sources from above
+const std::string vertex_source = R"(...)";
+const std::string frag_source = R"(...)";
+
+// member variable
 OpenGL::program_t program;
 
+// in constructor
 OpenGL::render_begin();
 program.compile(vertex_source, frag_source);
 OpenGL::render_end();
