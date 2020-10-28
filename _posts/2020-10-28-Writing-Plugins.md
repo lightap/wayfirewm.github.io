@@ -292,7 +292,9 @@ DECLARE_WAYFIRE_PLUGIN(wayfire_rounded_corners_t);
 The `view-mapped` signal is emitted for newly opened views. We filter out views that shouldn't have rounded corners, and then we add a transformer to the rest. Note that we never remove the transformer in case the plugin is unloaded.  This should be done, but is out-of-scope of this tutorial (and does not create problems as long as you don't dynamically unload the plugin). The end result:
 
 <p>
+<a href="{{site.baseurl}}/assets/images/rounded-corners.png">
 <img src="{{site.baseurl}}/assets/images/rounded-corners.png" alt="Screenshot..." width="100%">
+</a>
 </p>
 
 ## Final words
